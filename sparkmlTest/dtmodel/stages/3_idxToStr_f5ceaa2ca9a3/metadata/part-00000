@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.IndexToString","timestamp":1609826832295,"sparkVersion":"2.2.0","uid":"idxToStr_f5ceaa2ca9a3","paramMap":{"inputCol":"prediction","labels":["1.0","0.0"],"outputCol":"predictedLabel"}}
