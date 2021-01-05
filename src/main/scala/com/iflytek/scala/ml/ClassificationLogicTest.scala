@@ -8,6 +8,15 @@ import org.apache.spark.sql.functions.max
 /**
   * 逻辑回归分类
   * 分类算法
+  * LR建模
+  * * setMaxIter设置最大迭代次数(默认100),具体迭代次数可能在不足最大迭代次数停止
+  * * setTol设置容错(默认1e-6),每次迭代会计算一个误差,误差值随着迭代次数增加而减小,当误差小于设置容错,则停止迭代
+  * * setRegParam设置正则化项系数(默认0),正则化主要用于防止过拟合现象,如果数据集较小,特征维数又多,易出现过拟合,考虑增大正则化系数
+  * * setElasticNetParam正则化范式比(默认0),正则化有两种方式:L1(Lasso)和L2(Ridge),L1用于特征的稀疏化,L2用于防止过拟合
+  * * setLabelCol设置标签列
+  * * setFeaturesCol设置特征列
+  * * setPredictionCol设置预测列
+  * * setThreshold设置二分类阈值
   *
   */
 object ClassificationLogicTest {
