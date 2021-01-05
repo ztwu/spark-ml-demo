@@ -10,7 +10,7 @@ import org.apache.spark.sql.functions.max
   * 分类算法
   *
   */
-object logicTest {
+object ClassificationLogicTest {
 
   def main(args: Array[String]): Unit = {
 

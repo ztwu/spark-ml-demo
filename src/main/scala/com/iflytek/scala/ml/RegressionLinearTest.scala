@@ -9,7 +9,7 @@ import org.apache.spark.sql.SparkSession
   * 回归算法
   *
   */
-object linearTest {
+object RegressionLinearTest {
 
   def main(args: Array[String]): Unit = {
 

@@ -9,7 +9,7 @@ import org.apache.spark.sql.SparkSession
 /**
   * 分类算法
   */
-object treeTest {
+object ClassificationTreeTest {
 
   def main(args: Array[String]): Unit = {
 

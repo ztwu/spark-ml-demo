@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 /**
   * 聚类
   */
-object KmeansTest {
+object ClusteringKmeansTest {
 
   def main(args: Array[String]): Unit = {
 
