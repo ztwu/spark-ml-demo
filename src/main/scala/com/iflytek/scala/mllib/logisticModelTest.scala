@@ -10,7 +10,7 @@ import org.apache.spark.sql.SparkSession
   * Created by root on 1/12/18.
   * 多分类的逻辑回归分类
   */
-object LogisticRegressionTest {
+object logisticRegressionTest {
 
   def main(args: Array[String]): Unit = {
     val spark = SparkSession
@@ -79,5 +79,27 @@ object LogisticRegressionTest {
     // F1=(2×Precision×Recall) / (Precision+Recall)
     metrics.fMeasureByThreshold().collect().foreach(println)
 
+    println("====================================")
+    val result_new = test.map {
+      case LabeledPoint(lab, feat) => {
+        val pre_label = model.predict(feat)
+        val pre_score = calDot(feat.toArray, model.weights.toArray)
+        println("参数：", feat.toArray.mkString(","))
+        println("系数：", model.weights.toArray.mkString(","))
+        println("截距：", model.intercept)
+        println("=====")
+        val score = Math.pow(1 + Math.pow(Math.E, -2 * pre_score), -1)
+        (lab, pre_label, score)
+      }
+    }.collect().foreach(println)
+
+  }
+
+  def calDot(a1:Array[Double], a2:Array[Double]): Double ={
+    var score = 0.0
+    for(i<-Range(0,a1.length)){
+      score += a1(i)*a2(i)
+    }
+    return score
   }
 }

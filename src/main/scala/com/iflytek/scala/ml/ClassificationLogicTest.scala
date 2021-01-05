@@ -42,7 +42,10 @@ object ClassificationLogicTest {
       */
 
     //2 建立逻辑回归模型
-    val lr = new LogisticRegression().setMaxIter(10).setRegParam(0.3).setElasticNetParam(0.8)
+    val lr = new LogisticRegression()
+      .setMaxIter(10)
+      .setRegParam(0.3)
+      .setElasticNetParam(0.8)
 
     //2 根据训练样本进行模型训练
     val lrModel = lr.fit(training)
@@ -161,6 +164,32 @@ object ClassificationLogicTest {
     val AUC = binarySummary.areaUnderROC
     println(s"areaUnderROC: ${binarySummary.areaUnderROC}")
 
+    val recall = binarySummary.recallByThreshold
+    println(s"召回率：==========")
+    recall.show(false)
+    /**
+      * +-------------------+------+
+      * |threshold          |recall|
+      * +-------------------+------+
+      * |0.7775875659698517 |1.0   |
+      * |0.44603970353501293|1.0   |
+      * +-------------------+------+
+      *
+      */
+
+    val precision = binarySummary.precisionByThreshold
+    println(s"精确率：==========")
+    precision.show(false)
+    /**
+      * +-------------------+------------------+
+      * |threshold          |precision         |
+      * +-------------------+------------------+
+      * |0.7775875659698517 |1.0               |
+      * |0.44603970353501293|0.6666666666666666|
+      * +-------------------+------------------+
+      *
+      */
+
     //6 设置模型阈值
     //不同的阈值，计算不同的F1，然后通过最大的F1找出并重设模型的最佳阈值。
     val fMeasure = binarySummary.fMeasureByThreshold
@@ -187,8 +216,6 @@ object ClassificationLogicTest {
       .write
       .overwrite
       .save("sparkmlTest/lrmodel")
-
-    val load_lrModel = LogisticRegressionModel.load("sparkmlTest/lrmodel")
 
   }
 
