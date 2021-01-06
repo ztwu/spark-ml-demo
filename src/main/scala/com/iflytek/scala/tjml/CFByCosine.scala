@@ -3,8 +3,10 @@ package com.iflytek.scala.tjml
 import org.apache.spark.{SparkConf, SparkContext}
 import scala.collection.mutable.Map
 
-
-object CollaborativeFilteringSpark {
+/**
+  * 用户相似性计算
+  */
+object CFByCosine {
   val conf = new SparkConf()
     .setMaster("local")
     .setAppName("CollaborativeFilteringSpark ")    //设置环境变量
