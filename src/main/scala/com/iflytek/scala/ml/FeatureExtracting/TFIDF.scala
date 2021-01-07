@@ -22,12 +22,14 @@ object TFIDF {
       (1.0, "Logistic regression models are neat")
     )).toDF("label", "sentence")
 
+    // 分词
     val tokenizer = new Tokenizer()
       .setInputCol("sentence")
       .setOutputCol("words")
     val wordData = tokenizer.transform(sentenceData)
     wordData.show()
 
+    // HashingTF利用hashingtrick，原始特征通过应用哈希函数映射到索引中。然后根据映射的索引计算词频
     val hashingTF = new HashingTF()
       .setInputCol("words")
       .setOutputCol("rawFeatures")
@@ -35,6 +37,7 @@ object TFIDF {
     val featurizedData = hashingTF.transform(wordData)
     featurizedData.show()
 
+    // IDF（逆向文档频率）
     val idf = new IDF()
       .setInputCol("rawFeatures")
       .setOutputCol("features")

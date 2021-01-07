@@ -112,6 +112,7 @@ object KMeansTest2 {
     val doData_3 = doData_2.withColumn("words3", regexp_replace(doData_2.col("words2").cast(StringType), "\\s+", " "))
     //    doData_3.select("label", "words3").show(5)
 
+    // 分词
     val tokenizer = new Tokenizer()
       .setInputCol("words3")
       .setOutputCol("words")
@@ -125,12 +126,14 @@ object KMeansTest2 {
     val removerData = remover.transform(tokenData).select("label", "filtered")
     //    removerData.show(5, false)
 
+    // 求词频
     val hashingTF = new HashingTF()
       .setInputCol("filtered")
       .setOutputCol("rawFeatures")
       .setNumFeatures(100)
     val featurizedData = hashingTF.transform(removerData)
 
+    // 求逆向文档频率
     val idf = new IDF()
       .setInputCol("rawFeatures")
       .setOutputCol("features")
