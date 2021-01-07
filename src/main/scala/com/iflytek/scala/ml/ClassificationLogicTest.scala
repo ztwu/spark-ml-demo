@@ -1,6 +1,7 @@
 package com.iflytek.scala.ml
 
 import org.apache.spark.ml.classification.{BinaryLogisticRegressionSummary, LogisticRegression, LogisticRegressionModel}
+import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 import org.apache.spark.ml.linalg.Vectors
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.max
@@ -70,30 +71,6 @@ object ClassificationLogicTest {
 
     /**
       * Intercept: 1.251662793530725
-      */
-
-    //3 建立多元回归模型
-    val mlr = new LogisticRegression()
-      .setMaxIter(10)
-      .setRegParam(0.3)
-      .setElasticNetParam(0.8)
-      .setFamily("multinomial")
-
-    //3 根据训练样本进行模型训练
-    val mlrModel = mlr.fit(training)
-
-    //3 打印模型信息
-    println(s"Multinomial coefficients: ${mlrModel.coefficientMatrix}")
-
-    /**
-      * Multinomial coefficients: 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  ... (692 total)
-      * 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  ...
-      */
-
-    println(s"Multinomial intercepts: ${mlrModel.interceptVector}")
-
-    /**
-      * Multinomial intercepts: [-0.6449310568167714,0.6449310568167714]
       */
 
     //4 测试样本
