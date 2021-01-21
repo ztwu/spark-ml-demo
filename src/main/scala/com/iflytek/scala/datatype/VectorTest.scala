@@ -11,6 +11,8 @@ object VectorTest {
         //稠密向量 DenseVector
         val denseVector: linalg.Vector = Vectors.dense(1.0, 0.0, 3.0)
         //稀疏向量 SparseVector
+        // sparse (size, indexArray, valueArray)
+        // indexArray => valueArray 一一对应
         val sparseVector: linalg.Vector = Vectors.sparse(100, Array(0, 2, 5), Array(1.0, 3.0, 8.0))
 
 //        println("稠密向量: " + denseVector)
