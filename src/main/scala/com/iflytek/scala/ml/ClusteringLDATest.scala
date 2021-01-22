@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 /**
   * 聚类
   */
-object ClusteringldaTest {
+object ClusteringLDATest {
 
   def main(args: Array[String]): Unit = {
 
