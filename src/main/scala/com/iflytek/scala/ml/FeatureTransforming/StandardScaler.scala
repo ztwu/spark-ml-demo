@@ -6,6 +6,9 @@ import org.apache.spark.sql.SparkSession
 
 /**
   * StandardScaler（标准化）
+  * z−score规范化，又叫零均值规范化
+  *
+  * 无量纲化是依照特征矩阵的列处理数据，
   *
   * 对于同一个特征，不同的样本中的取值可能会相差非常大，一些异常小或异常大的数据会误导模型的正确训练；
   * 另外，如果数据的分布很分散也会影响训练结果。以上两种方式都体现在方差会非常大。
@@ -49,7 +52,7 @@ object StandardScaler {
     //均值归一化
     scaler.setWithMean(true)
     //标准差归一化
-    scaler.setWithStd(false)
+    scaler.setWithStd(true)
     //设置输入字段，即要对哪个字段的值进行数值优化
     scaler.setInputCol("features")
     //设置输出字段，即数值优化后的新字段名称..
@@ -63,7 +66,7 @@ object StandardScaler {
 
     //用模型对数据进行数值优化，得出新的值。
     val newdf = scalerModel.transform(df)
-    newdf.show()
+    newdf.show(false)
 
   }
 

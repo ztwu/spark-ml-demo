@@ -7,6 +7,8 @@ import org.apache.spark.sql.SparkSession
 /**
   * MaxAbsScaler（绝对值规范化）
   *
+  * 无量纲化是依照特征矩阵的列处理数据，
+  *
   * MaxAbsScaler转换Vector行的数据集，通过划分每个要素中的最大绝对值，
   * 将每个要素的重新映射到范围[-1,1]。 它不会使数据移动/居中，因此不会破坏任何稀疏性。
   * MaxAbsScaler计算数据集的统计信息，并生成MaxAbsScalerModel。

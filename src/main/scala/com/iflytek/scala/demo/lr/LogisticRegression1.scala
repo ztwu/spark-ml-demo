@@ -34,6 +34,9 @@ object LogisticRegression1 {
             .setMaxIter(100)
             //设置截距
 //            .setFitIntercept(true)
+          // 弹性参数，用于调节L1和L2之间的比例，两种正则化比例加起来是1，
+        // 详见后面正则化的设置，默认为0，只使用L2正则化，设置为1就是只用L1正则化
+//          .setElasticNetParam(1.0)
 
         val startTime = System.nanoTime()
 

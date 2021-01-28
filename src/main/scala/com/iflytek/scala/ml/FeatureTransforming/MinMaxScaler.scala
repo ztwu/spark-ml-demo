@@ -7,6 +7,8 @@ import org.apache.spark.sql.SparkSession
 /**
   * MinMaxScaler（最大-最小规范化）
   *
+  * 无量纲化是依照特征矩阵的列处理数据，
+  *
   * MinMaxScaler转换Vector行的数据集，将每个要素重新映射到特定范围（通常为[0，1]）。它需要参数：
   * min：默认为0.0，转换后的下限。
   * max：默认为1.0，转换后的上限。
