@@ -5,6 +5,25 @@ import org.apache.spark.sql.SparkSession
 
 /**
   * 8、StringIndexer（字符串-索引变换）
+  * SparkML中是通过StringIndexer来实现LabelEncoder的，而StringIndexer是对单列操作的
+  *
+  * 序号编码通常用于处理类别间具有大小关系的数据。
+  * 例如成绩，可以分为低、中、高三档，并且存在“高>中>低”的排序关系。
+  * 序号编码会按照大小关系对类别型特征赋予一个数值ID，
+  * 例如高表示为3、中表示为2、低表示为1，转换后依然保留了大小关系。
+  * **对于不具有大小关系的类别数据不建议使用。
+  *
+  * //使用pipeline一次转换
+  * val indexers = userSelectCols.map(col => {
+  * new StringIndexer().setInputCol(col).setOutputCol(col + "_indexed")
+  * })
+  * //转换后数据
+  * //配置一个包含三个stage的ML pipeline: tokenizer, hashingTF, and lr.
+  * //val pipeline = new Pipeline().setStages(Array(tokenizer, hashingTF, lr))
+  *
+  * val finalDF = new Pipeline().setStages(indexers)
+  * .fit(inputDF).transform(inputDF).cache()
+  * println(finalDF.count())
   *
   * StringIndexer（字符串-索引变换）将标签的字符串列编号改成标签索引列。
   * 标签索引序列的取值范围是[0，numLabels（字符串中所有出现的单词去掉重复的词后的总和）]，
