@@ -145,6 +145,9 @@ object ClassificationLogicTest {
       * |1.0|1.0|
       * |1.0|1.0|
       * +---+---+
+      *
+      * FPR = X轴 （预测为正样本/实际为负样本）
+      * TPR = y轴 （预测为正样本/实际为正样本）
       */
 
     val AUC = binarySummary.areaUnderROC
