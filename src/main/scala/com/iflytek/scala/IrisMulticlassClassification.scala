@@ -70,6 +70,8 @@ object IrisMulticlassClassification {
       + lrMetrics.weightedPrecision + "\t召回率weightedRecall" + lrMetrics.weightedRecall)
 
 
+//    处理非线性、特征值缺少的数据方面有很多的优势，能够处理不相干的特征，并且对分类的结果通过树的方式有比较清晰的结构解释，
+//    但是容易过拟合，针对这个问题，可以采取对树进行剪枝的方式，还有一些融合集成的解决方案
     //todo 使用决策树进行预测
     val dtModel = DecisionTree.trainClassifier(trainRDD, labelMap.size, Map[Int, Int](), "gini", 8, 2)
     val dtPredictAndActualRDD = testRDD.map { case LabeledPoint(label, features) => (dtModel.predict(features), label) }
@@ -91,6 +93,7 @@ object IrisMulticlassClassification {
     println("随机森林 准确率accuracy = " + rfMetrics.accuracy + "\t精确率weightedPrecision:"
       + rfMetrics.weightedPrecision + "\t召回率weightedRecall" + rfMetrics.weightedRecall)
 
+//    用来文本分类
     //todo 贝叶斯算法进行预测
     val nbModel = NaiveBayes.train(trainRDD)
     //使用模型进行预测
