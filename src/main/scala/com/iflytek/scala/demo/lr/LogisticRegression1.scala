@@ -23,6 +23,8 @@ object LogisticRegression1 {
           .format("libsvm")
           .load("data/mydata/健康状况训练集.txt")
 
+        data.show(false)
+
         val splits: util.List[Dataset[Row]] = data.randomSplitAsList(Array(0.8, 0.2), seed = 1L)
 
         val (trainingData, testData) = (splits.get(0), splits.get(1))
